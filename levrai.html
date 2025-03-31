@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compte Bancaire - BNP Paribas</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        header {
+            background: #007A33;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            border-radius: 8px 8px 0 0;
+        }
+        .account-info, .transactions {
+            margin: 20px 0;
+            padding: 15px;
+            background: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #007A33;
+        }
+        #balance {
+            font-weight: bold;
+            font-size: 1.5em;
+            color: #333;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background: #f9f9f9;
+            margin: 5px 0;
+            padding: 10px;
+            border-left: 5px solid #007A33;
+        }
+        .transaction-form {
+            margin-top: 20px;
+        }
+        input, button {
+            padding: 10px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background: #007A33;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>BNP Paribas - Mon Compte</h1>
+        </header>
+        <main>
+            <section class="account-info">
+                <h2>Solde actuel: <span id="balance">860,000€</span></h2>
+            </section>
+            <section class="transactions">
+                <h2>Historique des transactions</h2>
+                <ul id="transaction-list">
+                    <li>- 2,000€ - Achat en ligne</li>
+                    <li>- 5,000€ - Loyer</li>
+                    <li>- 1,200€ - Supermarché</li>
+                    <li>+ 50,000€ - Salaire</li>
+                    <li>- 3,500€ - Facture d'électricité</li>
+                </ul>
+            </section>
+            <section class="transaction-form">
+                <h2>Ajouter une transaction</h2>
+                <input type="text" id="transaction-desc" placeholder="Description">
+                <input type="number" id="transaction-amount" placeholder="Montant">
+                <button onclick="addTransaction()">Ajouter</button>
+            </section>
+        </main>
+    </div>
+    <script>
+        let balance = 860000;
+        
+        function addTransaction() {
+            const desc = document.getElementById('transaction-desc').value;
+            const amount = parseFloat(document.getElementById('transaction-amount').value);
+            const transactionList = document.getElementById('transaction-list');
+            
+            if (!desc || isNaN(amount)) {
+                alert("Veuillez entrer une description et un montant valide.");
+                return;
+            }
+            
+            const transactionItem = document.createElement('li');
+            transactionItem.textContent = `${amount >= 0 ? '+' : ''}${amount}€ - ${desc}`;
+            transactionList.appendChild(transactionItem);
+            
+            balance += amount;
+            document.getElementById('balance').textContent = balance.toLocaleString() + '€';
+            
+            document.getElementById('transaction-desc').value = '';
+            document.getElementById('transaction-amount').value = '';
+        }
+    </script>
+</body>
+</html>
+
