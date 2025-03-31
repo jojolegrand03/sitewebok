@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scraper Côtes Crash 1xBet</title>
+    <script>
+        async function fetchCrashOdds() {
+            const oddsElement = document.getElementById("odds");
+            oddsElement.innerText = "Chargement des cotes...";
+            
+            try {
+                // Simulation de récupération des données (Remplacez par une requête réelle)
+                let odds = (Math.random() * 10).toFixed(2); // Simulation d'une cote entre 1.00 et 10.00
+                oddsElement.innerText = "Côte actuelle : " + odds;
+            } catch (error) {
+                oddsElement.innerText = "Erreur lors de la récupération des cotes";
+            }
+        }
+
+        setInterval(fetchCrashOdds, 2000); // Mettre à jour toutes les 2 secondes
+    </script>
+</head>
+<body>
+    <h1>Scraper des Côtes Crash 1xBet</h1>
+    <p id="odds">Cliquez pour voir les cotes</p>
+    <button onclick="fetchCrashOdds()">Obtenir les cotes</button>
+</body>
+</html>
